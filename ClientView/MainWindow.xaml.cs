@@ -1,7 +1,11 @@
-﻿using System;
+﻿using ClientView;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,14 +24,27 @@ namespace ClientView
     /// </summary>
     public partial class MainWindow : Window
     {
+        HttpClient client = new();
+        public ObservableCollection<User> users { get; set; } = new();
+
+
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = this;
         }
 
-        private void Button_Click()
+        private async void GetButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var msg = new HttpRequestMessage();
+            msg.RequestUri = new Uri(@"http://localhost:27001/");
+            msg.Method = HttpMethod.Get;
+            var response = await client.SendAsync(msg);
+            var text = await response.Content.ReadAsStringAsync();
+            users.Clear();
+            users = JsonSerializer.Deserialize<ObservableCollection<User>>(text)!;
         }
+
+
     }
 }

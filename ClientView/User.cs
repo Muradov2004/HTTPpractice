@@ -1,4 +1,4 @@
-﻿namespace Client;
+﻿namespace ClientView;
 
 public class User
 {
@@ -7,5 +7,5 @@ public class User
     public string? Surname { get; set; }
 
 
-    public override string ToString() => $"{Id} {Name} {Surname}";
+    public override string ToString() => $"{Name} {Surname}";
 }
