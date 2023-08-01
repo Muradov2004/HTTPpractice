@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Listener", "Listener\Listener.csproj", "{7E660BAA-31CD-4FE2-B798-CDEF9341CC5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{D97A27B7-7A49-4117-852C-E079780F6A99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientView", "ClientView\ClientView.csproj", "{80B5BB9C-CBA7-4EF9-AA6C-93CDF537A979}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7E660BAA-31CD-4FE2-B798-CDEF9341CC5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E660BAA-31CD-4FE2-B798-CDEF9341CC5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E660BAA-31CD-4FE2-B798-CDEF9341CC5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E660BAA-31CD-4FE2-B798-CDEF9341CC5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D97A27B7-7A49-4117-852C-E079780F6A99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D97A27B7-7A49-4117-852C-E079780F6A99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D97A27B7-7A49-4117-852C-E079780F6A99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D97A27B7-7A49-4117-852C-E079780F6A99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80B5BB9C-CBA7-4EF9-AA6C-93CDF537A979}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80B5BB9C-CBA7-4EF9-AA6C-93CDF537A979}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80B5BB9C-CBA7-4EF9-AA6C-93CDF537A979}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80B5BB9C-CBA7-4EF9-AA6C-93CDF537A979}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {46D8B225-8DE1-4219-A2A7-BC28A6A089D6}
+	EndGlobalSection
+EndGlobal
