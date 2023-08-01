@@ -6,14 +6,22 @@
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         xmlns:local="clr-namespace:ClientView"
         mc:Ignorable="d"
-        fw:AcrylicWindow.Enabled="True"
-        Background="Red"
+        fw:AcrylicWindow.AcrylicWindowStyle="NoIcon"
+        fw:AcrylicWindow.Enabled="True"        
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
+        <ListView Margin="20">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name"/>
+                    <GridViewColumn Header="Surname"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
         <Grid Grid.Column="1" fw:PointerTracker.Enabled="True">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
