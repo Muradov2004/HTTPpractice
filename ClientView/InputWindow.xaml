@@ -1,0 +1,23 @@
+﻿<Window x:Class="ClientView.InputWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClientView"
+        xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+        fw:AcrylicWindow.AcrylicWindowStyle="NoIcon"
+        fw:AcrylicWindow.Enabled="True"        
+        mc:Ignorable="d"
+        Title="InputWindow" 
+        Height="300" Width="400" 
+        ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <TextBox x:Name="Username" Grid.Row="0" fw:Extensions.PlaceholderText="Name" Margin="70,70,70,25" Style="{StaticResource TextBoxRevealStyle}" FontSize="20"/>
+        <TextBox x:Name="Surname" Grid.Row="1" fw:Extensions.PlaceholderText="Surname" Margin="70,25,70,70" Style="{StaticResource TextBoxRevealStyle}" FontSize="20"/>
+    </Grid>
+</Window>

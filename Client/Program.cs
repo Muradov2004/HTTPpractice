@@ -8,7 +8,6 @@ int choise = Convert.ToInt32(Console.ReadLine());
 var msg = new HttpRequestMessage();
 msg.RequestUri = new Uri(@"http://localhost:27001/");
 if (choise == 1) msg.Method = HttpMethod.Get;
-
 else if (choise == 2)
 {
 
