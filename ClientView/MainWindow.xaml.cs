@@ -36,9 +36,11 @@ namespace ClientView
 
         private async void GetButtonClick(object sender, RoutedEventArgs e)
         {
-            var msg = new HttpRequestMessage();
-            msg.RequestUri = new Uri(@"http://localhost:27001/");
-            msg.Method = HttpMethod.Get;
+            var msg = new HttpRequestMessage
+            {
+                RequestUri = new Uri(@"http://localhost:27001/"),
+                Method = HttpMethod.Get
+            };
             var response = await client.SendAsync(msg);
             var text = await response.Content.ReadAsStringAsync();
             usersString.Clear();
@@ -48,10 +50,12 @@ namespace ClientView
 
         private async void PostButtonClick(object sender, RoutedEventArgs e)
         {
-            var msg = new HttpRequestMessage();
-            msg.RequestUri = new Uri(@"http://localhost:27001/");
-            msg.Method = HttpMethod.Post;
-            InputWindow window = new InputWindow();
+            var msg = new HttpRequestMessage
+            {
+                RequestUri = new Uri(@"http://localhost:27001/"),
+                Method = HttpMethod.Post
+            };
+            InputWindow window = new();
             window.ShowDialog();
             var userName = window.username;
             var Surname = window.surname;
@@ -60,6 +64,41 @@ namespace ClientView
             var response = await client.SendAsync(msg);
         }
 
+        private void PutButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (UserList.SelectedItem is not null)
+            {
+                var msg = new HttpRequestMessage
+                {
+                    RequestUri = new Uri(@"http://localhost:27001/"),
+                    Method = HttpMethod.Put
+                };
 
+
+                var Id = Convert.ToInt32(UserList.SelectedItem.ToString()!.Split(' ')[0]);
+
+                InputWindow window = new();
+                window.ShowDialog();
+                var userName = window.username;
+                var surname = window.surname;
+                User user = new() { Id = Id, Name = userName, Surname = surname };
+                msg.Content = new StringContent(JsonSerializer.Serialize(user));
+            }
+            else MessageBox.Show("First Select User", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+
+        }
+
+        private void DeleteButtonClick(object sender, RoutedEventArgs e)
+        {
+            var msg = new HttpRequestMessage
+            {
+                RequestUri = new Uri(@"http://localhost:27001/"),
+                Method = HttpMethod.Delete
+            };
+            var Id = Console.ReadLine();
+            msg.Content = new StringContent(Id!);
+
+        }
     }
 }
