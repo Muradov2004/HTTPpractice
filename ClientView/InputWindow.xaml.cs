@@ -19,9 +19,18 @@ namespace ClientView
     /// </summary>
     public partial class InputWindow : Window
     {
+        public string? username { get; set; }
+        public string? surname { get; set; }
         public InputWindow()
         {
             InitializeComponent();
+        }
+
+        private void OkButton_Click(object sender, RoutedEventArgs e)
+        {
+            username = Username.Text;
+            surname = Surname.Text;
+            Close();
         }
     }
 }

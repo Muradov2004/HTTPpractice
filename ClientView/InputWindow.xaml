@@ -19,5 +19,6 @@
         </Grid.RowDefinitions>
         <TextBox x:Name="Username" Grid.Row="0" fw:Extensions.PlaceholderText="Name" Margin="70,70,70,25" Style="{StaticResource TextBoxRevealStyle}" FontSize="20"/>
         <TextBox x:Name="Surname" Grid.Row="1" fw:Extensions.PlaceholderText="Surname" Margin="70,25,70,70" Style="{StaticResource TextBoxRevealStyle}" FontSize="20"/>
+        <Button x:Name="OkButton" Grid.Row="1" Margin="210,90,50,10" Content="OK" FontSize="20" Style="{StaticResource ButtonRevealStyle}" Click="OkButton_Click"/>
     </Grid>
 </Window>

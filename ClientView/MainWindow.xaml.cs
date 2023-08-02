@@ -51,10 +51,10 @@ namespace ClientView
             var msg = new HttpRequestMessage();
             msg.RequestUri = new Uri(@"http://localhost:27001/");
             msg.Method = HttpMethod.Post;
-            Window window = new InputWindow();
-            window.Show();
-            var userName = Console.ReadLine();
-            var Surname = Console.ReadLine();
+            InputWindow window = new InputWindow();
+            window.ShowDialog();
+            var userName = window.username;
+            var Surname = window.surname;
             User user = new() { Name = userName, Surname = Surname };
             msg.Content = new StringContent(JsonSerializer.Serialize(user));
             var response = await client.SendAsync(msg);
