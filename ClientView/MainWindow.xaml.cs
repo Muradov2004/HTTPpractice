@@ -77,7 +77,7 @@ namespace ClientView
             users.ForEach(u => Users.Add(u));
         }
 
-        private void PutButtonClick(object sender, RoutedEventArgs e)
+        private async void PutButtonClick(object sender, RoutedEventArgs e)
         {
             if (UserList.SelectedItem is not null)
             {
@@ -87,7 +87,7 @@ namespace ClientView
                     Method = HttpMethod.Put
                 };
 
-                var Id = Convert.ToInt32(UserList.SelectedItem.ToString()!.Split(' ')[0]);
+                var Id = Users[UserList.SelectedIndex].Id;
 
                 InputWindow window = new();
                 window.ShowDialog();
@@ -95,22 +95,28 @@ namespace ClientView
                 var surname = window.surname;
                 User user = new() { Id = Id, Name = userName, Surname = surname };
                 msg.Content = new StringContent(JsonSerializer.Serialize(user));
+                var response = await client.SendAsync(msg);
             }
             else MessageBox.Show("First Select User", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
 
 
         }
 
-        private void DeleteButtonClick(object sender, RoutedEventArgs e)
+        private async void DeleteButtonClick(object sender, RoutedEventArgs e)
         {
-            var msg = new HttpRequestMessage
+            if (UserList.SelectedItem is not null)
             {
-                RequestUri = new Uri(@"http://localhost:27001/"),
-                Method = HttpMethod.Delete
-            };
-            var Id = Console.ReadLine();
-            msg.Content = new StringContent(Id!);
 
+                var msg = new HttpRequestMessage
+                {
+                    RequestUri = new Uri(@"http://localhost:27001/"),
+                    Method = HttpMethod.Delete
+                };
+                var Id = Users[UserList.SelectedIndex].Id;
+                msg.Content = new StringContent(Id.ToString());
+                var response = await client.SendAsync(msg);
+            }
+            else MessageBox.Show("First Select User", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
 }
