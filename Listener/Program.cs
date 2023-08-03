@@ -40,7 +40,6 @@ while (true)
         var newUser = JsonSerializer.Deserialize<User>(reader.ReadToEnd());
         newUser!.Id = id;
         users.Add(newUser);
-        streamWriter.WriteLine("Added");
         var text = JsonSerializer.Serialize(users);
         streamWriter.WriteLine(text);
         streamWriter.Close();
@@ -51,7 +50,6 @@ while (true)
         User.gId--;
         users.FirstOrDefault(u => u.Id == updateUser!.Id)!.Name = updateUser!.Name;
         users.FirstOrDefault(u => u.Id == updateUser!.Id)!.Surname = updateUser!.Surname;
-        streamWriter.WriteLine("Updated");
         var text = JsonSerializer.Serialize(users);
         streamWriter.WriteLine(text);
         streamWriter.Close();
@@ -60,7 +58,6 @@ while (true)
     {
         var deleteId = Convert.ToInt32(reader.ReadToEnd());
         users.Remove(users.FirstOrDefault(u => u.Id == deleteId)!);
-        streamWriter.WriteLine("Deleted");
         var text = JsonSerializer.Serialize(users);
         streamWriter.WriteLine(text);
         streamWriter.Close();

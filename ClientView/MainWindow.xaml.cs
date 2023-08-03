@@ -26,7 +26,8 @@ namespace ClientView
     public partial class MainWindow : Window
     {
         HttpClient client = new();
-        public ObservableCollection<string> usersString { get; set; } = new();
+        private List<User> Users = new();
+        public ObservableCollection<string> UsersString { get; set; } = new();
 
         public MainWindow()
         {
@@ -43,9 +44,17 @@ namespace ClientView
             };
             var response = await client.SendAsync(msg);
             var text = await response.Content.ReadAsStringAsync();
-            usersString.Clear();
+            UsersString.Clear();
+            Users.Clear();
             var users = JsonSerializer.Deserialize<List<User>>(text)!;
-            users.ForEach(u => usersString.Add(u.ToString()));
+            await Task.Run(() =>
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    users.ForEach(u => UsersString.Add(u.ToString()));
+                    users.ForEach(u => Users.Add(u));
+                });
+            });
         }
 
         private async void PostButtonClick(object sender, RoutedEventArgs e)
@@ -62,6 +71,10 @@ namespace ClientView
             User user = new() { Name = userName, Surname = Surname };
             msg.Content = new StringContent(JsonSerializer.Serialize(user));
             var response = await client.SendAsync(msg);
+            var text = await response.Content.ReadAsStringAsync();
+            Users.Clear();
+            var users = JsonSerializer.Deserialize<List<User>>(text)!;
+            users.ForEach(u => Users.Add(u));
         }
 
         private void PutButtonClick(object sender, RoutedEventArgs e)
@@ -73,7 +86,6 @@ namespace ClientView
                     RequestUri = new Uri(@"http://localhost:27001/"),
                     Method = HttpMethod.Put
                 };
-
 
                 var Id = Convert.ToInt32(UserList.SelectedItem.ToString()!.Split(' ')[0]);
 
